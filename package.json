@@ -1,0 +1,72 @@
+{
+  "name": "@healthwise-ui/content",
+  "version": "0.0.16",
+  "description": "React UI library to use with Healthwise structured content API.",
+  "main": "index.js",
+  "unpkg": "healthwise-structured-content-ui.js",
+  "keywords": [
+    "react",
+    "ui",
+    "component library",
+    "healthwise"
+  ],
+  "author": "Healthwise",
+  "license": "MIT",
+  "repository": "healthwise/structured-content-ui",
+  "bugs": "https://github.com/healthwise/structured-content-ui/issues",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -o docs",
+    "prebuild": "rimraf build",
+    "build": "npm run build:cjs && npm run build:iife",
+    "build:cjs": "babel --root-mode upward-optional src -d build",
+    "build:iife": "rollup -c",
+    "postbuild": "node scripts/copyFiles.js",
+    "dopublish": "npm run build && npm publish build",
+    "dopublish:dryrun": "npm run build && npm publish build --dry-run"
+  },
+  "dependencies": {
+    "@healthwise-ui/core": "^1.0.0",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.7",
+    "styled-components": "^4.1.3"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@dump247/storybook-state": "^1.6.1",
+    "@storybook/addon-actions": "^5.3.2",
+    "@storybook/addon-info": "^5.3.2",
+    "@storybook/addon-knobs": "^5.3.2",
+    "@storybook/addon-links": "^5.3.2",
+    "@storybook/addon-viewport": "^5.3.2",
+    "@storybook/addons": "^5.3.2",
+    "@storybook/react": "^5.3.2",
+    "@storybook/theming": "^5.3.2",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react-app": "^4.0.1",
+    "fs-extra": "^7.0.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-terser": "^5.1.3"
+  }
+}
