@@ -2,7 +2,7 @@ import React from 'react'
 import { configure, addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { create } from '@storybook/theming'
-// import CssBaseline from '../packages/core/src/CssBaseline'
+import CssBaseline from '@healthwise-ui/core/CssBaseline'
 
 addDecorator(withInfo)
 addDecorator(story => {
@@ -10,10 +10,10 @@ addDecorator(story => {
     <div
       style={{
         padding: '16px',
-        minHeight: '100vh',
+        minHeight: '100vh'
       }}
     >
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       {story()}
     </div>
   )
