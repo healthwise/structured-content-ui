@@ -16,11 +16,5 @@ module.exports = ({ config, mode }) => {
   //   localIdentName: '[name]--[local]',
   // }
 
-  // config.resolve.alias['@healthwise-ui/core'] = path.resolve(
-  //   __dirname,
-  //   '..',
-  //   'src'
-  // )
-
   return config
 }
