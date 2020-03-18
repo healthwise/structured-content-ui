@@ -20,7 +20,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -o docs",
+    "storybook:build": "build-storybook",
     "prebuild": "rimraf build",
     "build": "npm run build:cjs && npm run build:iife",
     "build:cjs": "babel --root-mode upward-optional src -d build",
