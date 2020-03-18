@@ -18,6 +18,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -27,9 +30,8 @@ jobs:
     - run: npm test
     - run: npm run storybook:build
 
-    - name: Build and Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: storybook-static # The folder the action should deploy.
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./storybook-static
