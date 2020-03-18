@@ -26,10 +26,15 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - run: npm run storybook:build
+      
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      with:
+        persist-credentials: false
 
     - name: Build and Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: storybook-static # The folder the action should deploy.
