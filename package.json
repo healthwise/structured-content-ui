@@ -1,6 +1,6 @@
 {
   "name": "@healthwise-ui/content",
-  "version": "0.0.16",
+  "version": "1.0.0",
   "description": "React UI library to use with Healthwise structured content API.",
   "main": "index.js",
   "unpkg": "healthwise-structured-content-ui.js",
