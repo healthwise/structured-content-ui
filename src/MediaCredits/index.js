@@ -307,9 +307,7 @@ class MediaCredits extends Component {
 
   renderCredits(id) {
     const { asOfDate, credits } = this.props
-    let template = ''
-
-    template = this.state.showCredits ? (
+    return this.state.showCredits ? (
       <Credits
         role="region"
         id={id}
@@ -321,8 +319,6 @@ class MediaCredits extends Component {
     ) : (
       ''
     )
-
-    return template
   }
 
   render() {
@@ -340,11 +336,17 @@ class MediaCredits extends Component {
             aria-controls={disclaimerId}
             type="button"
             onClick={this.toggleDisclaimer}
+            aria-expanded={this.state.showDisclaimer}
           >
             Disclaimer
           </NavItemActiveButton>
         ) : (
-          <NavItemButton aria-controls={disclaimerId} type="button" onClick={this.toggleDisclaimer}>
+          <NavItemButton 
+            aria-controls={disclaimerId} 
+            type="button" 
+            onClick={this.toggleDisclaimer}
+            aria-expanded={this.state.showDisclaimer}
+          >
             Disclaimer
           </NavItemButton>
         )}
@@ -426,8 +428,8 @@ class MediaCredits extends Component {
     return (
       <DivWrapper>
         <DivNavWrapper>
-          {transcriptButton}
           <NavUl>
+            {transcriptButton}
             {disclaimerButton}
             <li>
               {this.state.showCredits ? (
