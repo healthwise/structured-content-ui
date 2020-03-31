@@ -24,13 +24,10 @@ const DivNavWrapper = styled.div`
   justify-content: space-between;
 `
 
-const NavUl = styled.ul`
+const NavButtonsRow = styled.div`
   margin: 0;
   padding: 0;
-
-  & li {
-    display: inline-block;
-  }
+  display: flex;
 
   @media screen and (-ms-high-contrast: active) {
     background: #fff;
@@ -325,13 +322,32 @@ class MediaCredits extends Component {
     let { legal, hideDisclaimer, transcriptHtml } = this.props
     const creditsId = getKey()
 
+    const creditsButton = this.state.showCredits ? (
+      <NavItemActiveButton
+        aria-controls={creditsId}
+        type="button"
+        onClick={this.toggleCredits}
+        aria-expanded={this.state.showCredits}
+      >
+        Credits
+      </NavItemActiveButton>
+    ) : (
+      <NavItemButton
+        aria-controls={creditsId}
+        type="button"
+        onClick={this.toggleCredits}
+        aria-expanded={this.state.showCredits}
+      >
+        Credits
+      </NavItemButton>
+    );
+
     const disclaimerId = getKey()
     const disclaimerElement = hideDisclaimer
       ? null
       : this.renderDisclaimer(legal.disclaimerText, disclaimerId)
     const disclaimerButton = hideDisclaimer ? null : (
-      <li>
-        {this.state.showDisclaimer ? (
+      this.state.showDisclaimer ? (
           <NavItemActiveButton
             aria-controls={disclaimerId}
             type="button"
@@ -349,8 +365,7 @@ class MediaCredits extends Component {
           >
             Disclaimer
           </NavItemButton>
-        )}
-      </li>
+        )
     )
 
     const transcriptId = getKey()
@@ -428,31 +443,11 @@ class MediaCredits extends Component {
     return (
       <DivWrapper>
         <DivNavWrapper>
-          <NavUl>
+          <NavButtonsRow>
             {transcriptButton}
             {disclaimerButton}
-            <li>
-              {this.state.showCredits ? (
-                <NavItemActiveButton
-                  aria-controls={creditsId}
-                  type="button"
-                  onClick={this.toggleCredits}
-                  aria-expanded={this.state.showCredits}
-                >
-                  Credits
-                </NavItemActiveButton>
-              ) : (
-                <NavItemButton
-                  aria-controls={creditsId}
-                  type="button"
-                  onClick={this.toggleCredits}
-                  aria-expanded={this.state.showCredits}
-                >
-                  Credits
-                </NavItemButton>
-              )}
-            </li>
-          </NavUl>
+            {creditsButton}
+          </NavButtonsRow>
         </DivNavWrapper>
         {transcriptElement}
         {disclaimerElement}
