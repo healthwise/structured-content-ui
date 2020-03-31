@@ -70,7 +70,13 @@ const NavButton = styled.button`
   color: #017acd;
   border: none;
   background: transparent;
+  border-radius: 1px;
 
+  &:focus, 
+  &:hover {
+    outline: 2px dotted #000;
+  }
+  
   padding: 5px 15px;
   &:disabled {
     padding: 0;
@@ -81,14 +87,7 @@ const NavButton = styled.button`
     outline: none;
     cursor: default;
   }
-
-  background: #f0f1f4;
-  border-radius: 1px;
   
-  &:focus, 
-  &:hover {
-    outline: 2px dotted #000;
-  }
 
   @media screen and (-ms-high-contrast: active) {
     background: #fff;
