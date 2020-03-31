@@ -58,89 +58,6 @@ const NavRightWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const NavItemButton = styled.button`
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8em;
-  margin: 5px 2px 0;
-  padding: 10px 15px;
-  color: #017acd;
-  border: none;
-  background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
-`
-
-const NavItemActiveButton = styled.button`
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8em;
-  margin: 5px 2px 0;
-  padding: 10px 15px;
-  color: #017acd;
-  border: none;
-  background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
-
-  background: #f0f1f4;
-  border-radius: 1px;
-
-  @media screen and (-ms-high-contrast: active) {
-    background: #fff;
-    color: #000;
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    background: #000;
-    color: #fff;
-  }
-`
-
 const NavButton = styled.button`
   box-sizing: border-box;
   display: flex;
@@ -290,7 +207,7 @@ class MediaCredits extends Component {
     const disclaimerElement = hideDisclaimer
       ? null
       : this.renderDisclaimer(legal.disclaimerText, disclaimerId)
-    const disclaimerButton = (
+    const disclaimerButton = disclaimerElement ? (
       <NavButton
         aria-controls={disclaimerId}
         type="button"
@@ -299,13 +216,13 @@ class MediaCredits extends Component {
       >
         Disclaimer
       </NavButton>
-    )
+    ) : ( '' );
 
     const transcriptId = getKey()
     const transcriptElement = transcriptHtml
       ? this.renderTranscript(transcriptHtml, transcriptId)
       : null
-    const transcriptButton = (
+    const transcriptButton =  transcriptHtml ? (
       <NavButton
         aria-controls={transcriptId}
         type="button"
@@ -331,7 +248,17 @@ class MediaCredits extends Component {
           </svg>
         </IconSpan> 
           <span>Transcript</span>
-        </NavButton>
+      </NavButton>
+    ) : (
+      <NavButton
+        tabIndex="-1"
+        disabled
+        type="button"
+        role="presentation"
+        aria-hidden="true"
+      >
+        {' '}
+      </NavButton>
     )
 
     return (
