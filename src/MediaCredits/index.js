@@ -98,6 +98,7 @@ const NavButton = styled.button`
   @media screen and (-ms-high-contrast: black-on-white) {
     background: #000;
     color: #fff;
+    outline: 2px dotted #fff;
   }
 `
 
@@ -174,7 +175,6 @@ class MediaCredits extends Component {
     const { asOfDate, credits } = this.props
     return this.state.showCredits ? (
       <Credits
-        className=""
         role="region"
         id={id}
         aria-live="polite"

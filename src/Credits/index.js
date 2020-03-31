@@ -40,8 +40,10 @@ class Credits extends Component {
         secondaryReviewers.push(reviewer.name)
       })
 
+    const creditsClass = 'hw-structured-content-credits'
+
     return (
-      <div className={className + ' hw-structured-content-credits'} {...otherAttributes}>
+      <div className={className ? (className + ' ' + creditsClass) : creditsClass} {...otherAttributes}>
         {asOfDate ? (
           <P>
             <Span>{currentLabel}:</Span> {asOfDate}
@@ -73,7 +75,7 @@ Credits.defaultProps = {
   currentLabel: 'Current as of',
   authorLabel: 'Author',
   reviewLabel: 'Medical Review',
-  className: '',
+  className: null,
 }
 
 Credits.propTypes = {
