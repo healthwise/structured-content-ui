@@ -73,6 +73,7 @@ Credits.defaultProps = {
   currentLabel: 'Current as of',
   authorLabel: 'Author',
   reviewLabel: 'Medical Review',
+  className: '',
 }
 
 Credits.propTypes = {
