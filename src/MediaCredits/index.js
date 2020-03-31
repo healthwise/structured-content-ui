@@ -76,7 +76,7 @@ const NavButton = styled.button`
   &:hover {
     outline: 2px dotted #000;
   }
-  
+
   padding: 5px 15px;
   &:disabled {
     padding: 0;
@@ -205,6 +205,8 @@ class MediaCredits extends Component {
     const disclaimerElement = hideDisclaimer
       ? null
       : this.renderDisclaimer(legal.disclaimerText, disclaimerId)
+
+    // if hideDisclaimer prop was true, disclaimerElement will be null therefore no button
     const disclaimerButton = disclaimerElement ? (
       <NavButton
         aria-controls={disclaimerId}
