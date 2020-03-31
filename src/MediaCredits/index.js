@@ -162,10 +162,9 @@ class MediaCredits extends Component {
   renderDisclaimer(text, id) {
     return this.state.showDisclaimer ? (
       <p
-        role="region" 
+        role="region"
         id={id} 
-        aria-live="polite" 
-        aria-atomic="false">
+        aria-live="polite">
         {text}
       </p>
     ) : null
