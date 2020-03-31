@@ -126,16 +126,6 @@ class MediaCredits extends Component {
     })
   }
 
-  toggleTranscript() {
-    const newState = !this.state.showTranscript
-
-    this.setState({
-      showDisclaimer: false,
-      showCredits: false,
-      showTranscript: newState,
-    })
-  }
-
   toggleCredits() {
     const newState = !this.state.showCredits
 
@@ -143,6 +133,16 @@ class MediaCredits extends Component {
       showDisclaimer: false,
       showCredits: newState,
       showTranscript: false,
+    })
+  }
+
+  toggleTranscript() {
+    const newState = !this.state.showTranscript
+
+    this.setState({
+      showDisclaimer: false,
+      showCredits: false,
+      showTranscript: newState,
     })
   }
 
