@@ -24,13 +24,12 @@ const DivNavWrapper = styled.div`
   justify-content: space-between;
 `
 
-const NavUl = styled.ul`
+const NavButtonsRow = styled.div`
+  width: 100%;
   margin: 0;
   padding: 0;
-
-  & li {
-    display: inline-block;
-  }
+  display: flex;
+  justify-content: space-between;
 
   @media screen and (-ms-high-contrast: active) {
     background: #fff;
@@ -53,42 +52,13 @@ const IconSpan = styled.span`
   }
 `
 
-const NavItemButton = styled.button`
-  box-sizing: border-box;
+const NavRightWrapper = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8em;
-  margin: 5px 2px 0;
-  padding: 10px 15px;
-  color: #017acd;
-  border: none;
-  background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
+  width: 100%;
+  justify-content: flex-end;
 `
 
-const NavItemActiveButton = styled.button`
+const NavButton = styled.button`
   box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
@@ -100,30 +70,24 @@ const NavItemActiveButton = styled.button`
   color: #017acd;
   border: none;
   background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
-
-  background: #f0f1f4;
   border-radius: 1px;
+
+  &:focus, 
+  &:hover {
+    outline: 2px dotted #000;
+  }
+
+  padding: 5px 15px;
+  &:disabled {
+    padding: 0;
+  }
+  
+  &:disabled:focus,
+  &:disabled:hover {
+    outline: none;
+    cursor: default;
+  }
+  
 
   @media screen and (-ms-high-contrast: active) {
     background: #fff;
@@ -133,109 +97,7 @@ const NavItemActiveButton = styled.button`
   @media screen and (-ms-high-contrast: black-on-white) {
     background: #000;
     color: #fff;
-  }
-`
-
-const NavTranscriptItemButton = styled.button`
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8em;
-  margin: 5px 2px 0;
-  padding: 10px 15px;
-  color: #017acd;
-  border: none;
-  background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
-
-  padding: 5px 15px;
-  &:disabled {
-    padding: 0;
-  }
-  &:disabled:focus,
-  &:disabled:hover {
-    outline: none;
-    cursor: default;
-  }
-`
-
-const NavTranscriptItemActiveButton = styled.button`
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8em;
-  margin: 5px 2px 0;
-  padding: 10px 15px;
-  color: #017acd;
-  border: none;
-  background: transparent;
-
-  &:focus,
-  &:hover {
-    color: #015c9a;
-    cursor: pointer;
-    outline: 2px solid #000;
-  }
-
-  @media screen and (-ms-high-contrast: active) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #fff;
-    }
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    &:focus,
-    &:hover {
-      outline: 2px solid #000;
-    }
-  }
-
-  padding: 5px 15px;
-  &:disabled {
-    padding: 0;
-  }
-  &:disabled:focus,
-  &:disabled:hover {
-    outline: none;
-    cursor: default;
-  }
-
-  background: #f0f1f4;
-  border-radius: 1px;
-
-  @media screen and (-ms-high-contrast: active) {
-    background: #fff;
-    color: #000;
-  }
-
-  @media screen and (-ms-high-contrast: black-on-white) {
-    background: #000;
-    color: #fff;
+    outline: 2px dotted #fff;
   }
 `
 
@@ -299,7 +161,10 @@ class MediaCredits extends Component {
 
   renderDisclaimer(text, id) {
     return this.state.showDisclaimer ? (
-      <p role="region" id={id} aria-live="polite">
+      <p
+        role="region"
+        id={id} 
+        aria-live="polite">
         {text}
       </p>
     ) : null
@@ -307,9 +172,7 @@ class MediaCredits extends Component {
 
   renderCredits(id) {
     const { asOfDate, credits } = this.props
-    let template = ''
-
-    template = this.state.showCredits ? (
+    return this.state.showCredits ? (
       <Credits
         role="region"
         id={id}
@@ -321,98 +184,73 @@ class MediaCredits extends Component {
     ) : (
       ''
     )
-
-    return template
   }
 
   render() {
     let { legal, hideDisclaimer, transcriptHtml } = this.props
     const creditsId = getKey()
 
+    const creditsButton = (
+      <NavButton
+        aria-controls={creditsId}
+        type="button"
+        onClick={this.toggleCredits}
+        aria-expanded={this.state.showCredits}
+      >
+        Credits
+      </NavButton>
+    )
+
     const disclaimerId = getKey()
     const disclaimerElement = hideDisclaimer
       ? null
       : this.renderDisclaimer(legal.disclaimerText, disclaimerId)
-    const disclaimerButton = hideDisclaimer ? null : (
-      <li>
-        {this.state.showDisclaimer ? (
-          <NavItemActiveButton
-            aria-controls={disclaimerId}
-            type="button"
-            onClick={this.toggleDisclaimer}
-          >
-            Disclaimer
-          </NavItemActiveButton>
-        ) : (
-          <NavItemButton aria-controls={disclaimerId} type="button" onClick={this.toggleDisclaimer}>
-            Disclaimer
-          </NavItemButton>
-        )}
-      </li>
-    )
+
+    // if hideDisclaimer prop was true, disclaimerElement will be null therefore no button
+    const disclaimerButton = disclaimerElement ? (
+      <NavButton
+        aria-controls={disclaimerId}
+        type="button"
+        onClick={this.toggleDisclaimer}
+        aria-expanded={this.state.showDisclaimer}
+      >
+        Disclaimer
+      </NavButton>
+    ) : ( '' );
 
     const transcriptId = getKey()
     const transcriptElement = transcriptHtml
       ? this.renderTranscript(transcriptHtml, transcriptId)
       : null
-    const transcriptButton = transcriptHtml ? (
-      this.showTranscript ? (
-        <NavTranscriptItemActiveButton
-          aria-controls={transcriptId}
-          type="button"
-          onClick={this.toggleTranscript}
-          aria-expanded={this.state.showTranscript}
+    const transcriptButton =  transcriptHtml ? (
+      <NavButton
+        aria-controls={transcriptId}
+        type="button"
+        onClick={this.toggleTranscript}
+        aria-expanded={this.state.showTranscript}
         >
           <IconSpan>
             <svg
-              role="presentation"
-              focusable="false"
-              width="18"
-              height="22"
-              viewBox="0 0 18 22"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g>
-                <path d="M1.528 1.634h14.944v18.732H1.528V1.634z" fill="#017acd" />
-                <path
-                  d="M3.728 9.646h10.59v2.26H3.728v-2.26zm0-4.355h10.59v2.26H3.728V5.29zm-.073 9.036h6.403v2.404H3.655v-2.404z"
-                  fill="#fff"
-                />
-              </g>
-            </svg>
-          </IconSpan>
+            role="presentation"
+            focusable="false"
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path d="M1.528 1.634h14.944v18.732H1.528V1.634z" fill="#017acd" />
+              <path
+                d="M3.728 9.646h10.59v2.26H3.728v-2.26zm0-4.355h10.59v2.26H3.728V5.29zm-.073 9.036h6.403v2.404H3.655v-2.404z"
+                fill="#fff"
+              />
+            </g>
+          </svg>
+        </IconSpan> 
           <span>Transcript</span>
-        </NavTranscriptItemActiveButton>
-      ) : (
-        <NavTranscriptItemButton
-          aria-controls={transcriptId}
-          type="button"
-          onClick={this.toggleTranscript}
-          aria-expanded={this.state.showTranscript}
-        >
-          <IconSpan>
-            <svg
-              role="presentation"
-              focusable="false"
-              width="18"
-              height="22"
-              viewBox="0 0 18 22"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g>
-                <path d="M1.528 1.634h14.944v18.732H1.528V1.634z" fill="#017acd" />
-                <path
-                  d="M3.728 9.646h10.59v2.26H3.728v-2.26zm0-4.355h10.59v2.26H3.728V5.29zm-.073 9.036h6.403v2.404H3.655v-2.404z"
-                  fill="#fff"
-                />
-              </g>
-            </svg>
-          </IconSpan>
-          <span>Transcript</span>
-        </NavTranscriptItemButton>
-      )
+      </NavButton>
     ) : (
-      <NavTranscriptItemButton
+      <NavButton
         tabIndex="-1"
         disabled
         type="button"
@@ -420,37 +258,19 @@ class MediaCredits extends Component {
         aria-hidden="true"
       >
         {' '}
-      </NavTranscriptItemButton>
+      </NavButton>
     )
 
     return (
       <DivWrapper>
         <DivNavWrapper>
-          {transcriptButton}
-          <NavUl>
-            {disclaimerButton}
-            <li>
-              {this.state.showCredits ? (
-                <NavItemActiveButton
-                  aria-controls={creditsId}
-                  type="button"
-                  onClick={this.toggleCredits}
-                  aria-expanded={this.state.showCredits}
-                >
-                  Credits
-                </NavItemActiveButton>
-              ) : (
-                <NavItemButton
-                  aria-controls={creditsId}
-                  type="button"
-                  onClick={this.toggleCredits}
-                  aria-expanded={this.state.showCredits}
-                >
-                  Credits
-                </NavItemButton>
-              )}
-            </li>
-          </NavUl>
+          <NavButtonsRow>
+              {transcriptButton}
+            <NavRightWrapper>
+              {disclaimerButton}
+              {creditsButton}
+            </NavRightWrapper>
+          </NavButtonsRow>
         </DivNavWrapper>
         {transcriptElement}
         {disclaimerElement}
