@@ -1,16 +1,15 @@
 import React from 'react'
-import { configure, addDecorator, addParameters } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
+import { addDecorator, addParameters } from '@storybook/react'
 import { create } from '@storybook/theming'
+
 import CssBaseline from '@healthwise-ui/core/CssBaseline'
 
-addDecorator(withInfo)
 addDecorator(story => {
   return (
     <div
       style={{
         padding: '16px',
-        minHeight: '100vh'
+        minHeight: '100vh',
       }}
     >
       <CssBaseline />
@@ -18,6 +17,7 @@ addDecorator(story => {
     </div>
   )
 })
+
 addParameters({
   options: {
     theme: create({
@@ -27,15 +27,3 @@ addParameters({
     }),
   },
 })
-
-// Automatically import all files ending in *.stories.js
-const req = require.context(
-  '../src',
-  true,
-  /^((?![/\\\\]node_modules[/\\\\]).)*\.stories\.js$/
-)
-function loadStories() {
-  req.keys().forEach(filename => req(filename))
-}
-
-configure(loadStories, module)

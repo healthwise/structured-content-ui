@@ -6,9 +6,11 @@ module.exports = {
         targets: ['ie 11', '> 1%'],
       },
     ],
-    '@babel/react',
+    '@babel/preset-react',
   ],
-  plugins: ['@babel/proposal-class-properties'],
-  // Ignore node_modules in subdirectories of monorepo
-  ignore: ['**/node_modules/**'],
+  plugins: [
+    ['@babel/proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-private-methods', { loose: true }],
+  ],
+  ignore: ['node_modules/**'],
 }
