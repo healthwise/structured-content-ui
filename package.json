@@ -34,7 +34,7 @@
     "reset": "npm run clean && rimraf node_modules && npm install",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook -o docs",
-    "test": "jest",
+    "test": "",
     "validate": "npm-run-all --parallel format lint build"
   },
   "dependencies": {
