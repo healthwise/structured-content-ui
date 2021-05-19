@@ -1,17 +1,22 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { action } from '@storybook/addon-actions'
 
 import MediaCredits from './index'
 
-const styles = {
+export const styles = {
   container: {
     width: '400px',
   },
 }
 
-storiesOf('Media Credits', module).add(
-  'with defaults',
-  () => (
+<Meta title="Components/Media Credits" component={MediaCredits} />
+
+# Accordion
+
+Default rendering.
+
+<Preview>
+  <Story name="Demonstrates default rendering of MediaCredits component">
     <div style={styles.container}>
       <MediaCredits
         asOfDate="2017/01/01"
@@ -42,8 +47,5 @@ storiesOf('Media Credits', module).add(
         }}
       />
     </div>
-  ),
-  {
-    info: `Demonstrates default rendering of MediaCredits component`,
-  }
-)
+  </Story>
+</Preview>

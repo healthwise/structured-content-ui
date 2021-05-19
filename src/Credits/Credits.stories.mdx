@@ -1,0 +1,117 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { action } from '@storybook/addon-actions'
+
+import Credits from './index'
+
+<Meta title="Components/Credits" component={Credits} />
+
+# Credits
+
+Defaults(renders nothing)
+
+<Preview>
+  <Story name="Demonstates basic rendering with defaults">
+    <Credits />
+  </Story>
+</Preview>
+
+Author and no reviewers
+
+<Preview>
+  <Story name="Demonstrates rendering with author info only">
+    <Credits
+      credits={{
+        author: {
+          name: 'Zaphod Beeblebrox',
+        },
+      }}
+    />
+  </Story>
+</Preview>
+
+Author and primary reviewers
+
+<Preview>
+  <Story name="Demonstrates rendering with author and primary reviewer info">
+    <Credits
+      credits={{
+        author: {
+          name: 'Zaphod Beeblebrox',
+        },
+        primaryReviewers: [
+          {
+            name: 'Ford Prefect',
+          },
+          {
+            name: 'Arthur Dent',
+          },
+        ],
+      }}
+    />
+  </Story>
+</Preview>
+
+All data, default labels
+
+<Preview>
+  <Story name="Demonstrates rendering with a full data set and the default label values">
+    <Credits
+      asOfDate="2017/01/01"
+      credits={{
+        author: {
+          name: 'Zaphod Beeblebrox',
+        },
+        primaryReviewers: [
+          {
+            name: 'Ford Prefect',
+          },
+          {
+            name: 'Arthur Dent',
+          },
+        ],
+        secondaryReviewers: [
+          {
+            name: 'Trillian',
+          },
+          {
+            name: 'Marvin, the Paranoid Android',
+          },
+        ],
+      }}
+    />
+  </Story>
+</Preview>
+
+All data, overriding labels
+
+<Preview>
+  <Story name="Demonstrates rendering with a full data set and overriding default label values">
+    <Credits
+      currentLabel="THE CURRENT LABEL"
+      authorLabel="THE AUTHOR LABEL"
+      reviewLabel="THE REVIEW LABEL"
+      asOfDate="2017/01/01"
+      credits={{
+        author: {
+          name: 'Zaphod Beeblebrox',
+        },
+        primaryReviewers: [
+          {
+            name: 'Ford Prefect',
+          },
+          {
+            name: 'Arthur Dent',
+          },
+        ],
+        secondaryReviewers: [
+          {
+            name: 'Trillian',
+          },
+          {
+            name: 'Marvin, the Paranoid Android',
+          },
+        ],
+      }}
+    />
+  </Story>
+</Preview>
